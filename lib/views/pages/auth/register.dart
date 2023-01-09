@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_rent/provider/auth_provider.dart';
+import 'package:go_rent/services/auth_service.dart';
+import 'package:go_rent/views/pages/auth/login.dart';
 import 'package:go_rent/views/themes/colors.dart';
 import 'package:go_rent/views/themes/font_weights.dart';
 import 'package:go_rent/views/widgets/loading.dart';
@@ -33,20 +35,26 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
+    int? register;
     Future<void> doRegister() async {
       setState(() {
         isLoading = true;
       });
 
-      if (await authProvider.register(
+      register = await AuthService().register(
           username: usernameController.text,
           noHp: noHpController.text,
           email: emailController.text,
           alamat: alamatController.text,
-          password: passwordController.text)) {
-        saveLoginStatus();
+          password: passwordController.text);
 
-        Navigator.pushReplacementNamed(context, 'home');
+      print(register);
+      if (register == 201) {
+        // saveLoginStatus();
+        // Navigator.pushReplacementNamed(context, 'home');
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => const LoginPage()),
+            (Route<dynamic> route) => false);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             backgroundColor: greenColor,
@@ -67,6 +75,36 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
         );
       }
+
+      // if (await authProvider.register(
+      //     username: usernameController.text,
+      //     noHp: noHpController.text,
+      //     email: emailController.text,
+      //     alamat: alamatController.text,
+      //     password: passwordController.text)) {
+      //   saveLoginStatus();
+
+      //   Navigator.pushReplacementNamed(context, 'home');
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     const SnackBar(
+      //       backgroundColor: greenColor,
+      //       content: Text(
+      //         'Berhasil register',
+      //         textAlign: TextAlign.center,
+      //       ),
+      //     ),
+      //   );
+      // } else {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     const SnackBar(
+      //       backgroundColor: alertColor,
+      //       content: Text(
+      //         'Email sudah terdaftar',
+      //         textAlign: TextAlign.center,
+      //       ),
+      //     ),
+      //   );
+      // }
 
       setState(() {
         isLoading = false;

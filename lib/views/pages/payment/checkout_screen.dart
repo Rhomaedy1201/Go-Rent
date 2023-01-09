@@ -46,7 +46,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   // get id Transaksi untuk menambahakan atau post ke payment/pembayaran
   bool isloading = false;
-  List<TransactionIdDataModel> idTrans = [];
+  var idTrans;
   var cekIdTrans;
   var idTransaksi;
   Future<void> getIdTrans() async {
@@ -55,8 +55,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     });
     try {
       idTrans = await ServiceIdTransaction().getIdTransaction();
-      cekIdTrans = idTrans[0].idTransaksi;
-      idTransaksi = cekIdTrans + 1;
+      idTransaksi = idTrans + 1;
+      print(idTransaksi);
     } catch (e) {
       print(e);
     }
@@ -107,6 +107,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     setState(() {
       isloading = true;
     });
+
     try {
       var postTrans = await DataCheckoutService().postTransaction(
         id_transaksi: '${idTransaksi}',
@@ -121,6 +122,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         total_pembayaran: '${widget.subTotal}',
         status_pembayaran: 'Belum dibayar',
       );
+      print(idTransaksi);
       if (postTrans == true) {
         Navigator.pushAndRemoveUntil(
           context,

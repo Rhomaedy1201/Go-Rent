@@ -11,9 +11,6 @@ class DataUnitService {
       Uri.parse(
         "$baseUrl/data_unit.php",
       ),
-      headers: {
-        HttpHeaders.contentTypeHeader: "application/json",
-      },
     );
 
     if (response.statusCode == 200) {

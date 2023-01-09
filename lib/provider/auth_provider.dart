@@ -20,13 +20,13 @@ class AuthProvider extends ChangeNotifier {
     required String password,
   }) async {
     try {
-      UserModel user = await AuthService().register(
-        username: username,
-        noHp: noHp,
-        email: email,
-        alamat: alamat,
-        password: password,
-      );
+      // UserModel user = await AuthService().register(
+      //   username: username,
+      //   noHp: noHp,
+      //   email: email,
+      //   alamat: alamat,
+      //   password: password,
+      // );
       _user = user;
 
       return true;

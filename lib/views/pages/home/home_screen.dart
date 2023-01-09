@@ -3,6 +3,7 @@ import 'package:go_rent/models/data_unit_model.dart';
 import 'package:go_rent/models/user_model.dart';
 import 'package:go_rent/provider/auth_provider.dart';
 import 'package:go_rent/services/data_unit_service.dart';
+import 'package:go_rent/views/pages/home/category_page.dart';
 import 'package:go_rent/views/pages/home/detail_page.dart';
 import 'package:go_rent/views/themes/colors.dart';
 import 'package:go_rent/views/themes/font_weights.dart';
@@ -25,6 +26,12 @@ class _HomeScreenState extends State<HomeScreen> {
     loadProducts();
     super.initState();
   }
+
+  List<String> listCat = [
+    'All',
+    'Roda Dua',
+    'Roda Empat',
+  ];
 
   bool isLoading = false;
   List<DataUnitModel> products = [];
@@ -227,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
-            padding: EdgeInsets.fromLTRB(10, 40, 10, 0),
+            padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
             child: Text("Tidak ada kendaraan ?"),
           ),
           Padding(
@@ -243,11 +250,56 @@ class _HomeScreenState extends State<HomeScreen> {
 
           // SEARCH
           searchInput(),
+
+          Container(
+            height: 100,
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: listCat.length,
+              itemExtent: 130,
+              itemBuilder: (context, index) {
+                return Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CategoryPage(idKat: index),
+                            ));
+                      },
+                      child: Container(
+                        height: 40,
+                        width: 120,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFD2D2D2),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(child: Text("${listCat[index]}")),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ),
+
           const SizedBox(
-            height: 30.0,
+            height: 5.0,
           ),
 
           // KATALOG PRODUCT
+          const Padding(
+            padding: EdgeInsets.only(left: 10, bottom: 20),
+            child: Text(
+              "Kendaraan Terbaik",
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -273,7 +325,7 @@ class _HomeScreenState extends State<HomeScreen> {
           const Padding(
             padding: EdgeInsets.only(top: 10, left: 10),
             child: Text(
-              "Populer",
+              "Rekomendasi",
               style: TextStyle(
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,

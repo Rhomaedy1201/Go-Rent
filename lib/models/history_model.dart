@@ -10,7 +10,7 @@ class HistoryModel {
   String? nama;
   String? gambar;
   String? jeniskendaraan;
-  String? jumlahroda;
+  String? stok;
   String? hargasewa;
 
   HistoryModel({
@@ -25,7 +25,7 @@ class HistoryModel {
     this.nama,
     this.gambar,
     this.jeniskendaraan,
-    this.jumlahroda,
+    this.stok,
     this.hargasewa,
   });
 
@@ -41,7 +41,7 @@ class HistoryModel {
     nama = json['nama'];
     gambar = json['gambar'];
     jeniskendaraan = json['jeniskendaraan'];
-    jumlahroda = json['jumlahroda'];
+    stok = json['stok'];
     hargasewa = json['hargasewa'];
   }
 
@@ -58,7 +58,7 @@ class HistoryModel {
     data['nama'] = this.nama;
     data['gambar'] = this.gambar;
     data['jeniskendaraan'] = this.jeniskendaraan;
-    data['jumlahroda'] = this.jumlahroda;
+    data['stok'] = this.stok;
     data['hargasewa'] = this.hargasewa;
     return data;
   }

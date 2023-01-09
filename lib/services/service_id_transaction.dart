@@ -7,30 +7,22 @@ import 'package:http/http.dart' as http;
 import 'package:go_rent/models/transaction_id_data_model.dart';
 
 class ServiceIdTransaction {
-  Future<List<TransactionIdDataModel>> getIdTransaction() async {
-    List<TransactionIdDataModel> result = [];
+  Future<int?> getIdTransaction() async {
+    int result;
     try {
       var response = await http.get(
-        Uri.parse("$baseUrl/get_IdTransaksi.php"),
-        headers: {
-          HttpHeaders.contentTypeHeader: "application/json",
-        },
+        Uri.parse("$baseUrl/get_idTransaksi.php"),
       );
-
+      print(response.body);
       if (response.statusCode == 200) {
-        List data = json.decode(response.body)['result'];
-
-        data.forEach((element) {
-          result.add(TransactionIdDataModel.fromJson(element));
-        });
+        result = json.decode(response.body)['result'][0]['id_transaksi'];
 
         return result;
       } else {
         throw Exception(response.statusCode);
       }
     } catch (e) {
-      log(e.toString());
+      log("cekkkkk ${e.toString()}");
     }
-    return result;
   }
 }

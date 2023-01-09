@@ -245,7 +245,7 @@ class _DetailPageState extends State<DetailPage> {
                               ),
                               SizedBox(height: 10),
                               Text(
-                                "Jumlah Tersedia :",
+                                "Stok Tersedia :",
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w500,
@@ -268,7 +268,7 @@ class _DetailPageState extends State<DetailPage> {
                             ),
                             const SizedBox(height: 10),
                             Text(
-                              "${data[index].jumlahroda} unit",
+                              "${data[index].stok} unit",
                               style: const TextStyle(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w500,

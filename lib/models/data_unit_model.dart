@@ -3,7 +3,7 @@ class DataUnitModel {
   String? nama;
   String? gambar;
   String? jeniskendaraan;
-  String? jumlahroda;
+  String? stok;
   int? hargasewa;
 
   DataUnitModel(
@@ -11,7 +11,7 @@ class DataUnitModel {
       this.nama,
       this.gambar,
       this.jeniskendaraan,
-      this.jumlahroda,
+      this.stok,
       this.hargasewa});
 
   DataUnitModel.fromJson(Map<String, dynamic> json) {
@@ -19,7 +19,7 @@ class DataUnitModel {
     nama = json['nama'];
     gambar = json['gambar'];
     jeniskendaraan = json['jeniskendaraan'];
-    jumlahroda = json['jumlahroda'];
+    stok = json['stok'];
     hargasewa = json['hargasewa'];
   }
 
@@ -29,7 +29,7 @@ class DataUnitModel {
     data['nama'] = this.nama;
     data['gambar'] = this.gambar;
     data['jeniskendaraan'] = this.jeniskendaraan;
-    data['jumlahroda'] = this.jumlahroda;
+    data['stok'] = this.stok;
     data['hargasewa'] = this.hargasewa;
     return data;
   }

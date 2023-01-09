@@ -84,6 +84,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: transaksi.length,
+              reverse: true,
               itemBuilder: (context, index) {
                 return Padding(
                   padding:
